@@ -1,1 +1,5 @@
 
+1)Bean Factory uses Lazy initialization and AppCtx used Eager. BF creates Singleton bean only when requested but AC creates all singleton beans. 
+2)BF supports i18n (internationalization) and BF does not.
+3)BF doesn't support Annotations based DI, but AC does.
+4)AC includes support for BeanPostProcessors which can be used in Transactions and AOP.
