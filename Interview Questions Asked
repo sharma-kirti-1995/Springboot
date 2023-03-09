@@ -1,1 +1,70 @@
 
+Ques. How to inject prototype bean reference in singleton bean? => LINK: https://java2blog.com/injecting-prototype-bean-singleton-bean-spring/#Using_Method_injection
+Ans. Whenever we inject a prototype bean in singleton bean then that bean behaves as Singleton-
+To overcome this problem:
+1) Using Method injection
+2) Using ObjectFactory
+3) Using ApplicationContextAware
+class X {
+
+@Autowired
+Y y;
+
+public Y getY() { return y; }
+public void setY(Y y) { this.y=y; }
+
+}
+
+class InjectPrototypeToSingletonMain {
+ApplicationContext appCtx = new ClassPathXMLApplicationContext("web.xml");
+X firstX = (X)appCtx.getBean("x");
+Y firstX = firstX.getY();
+
+X secondX = (X)appCtx.getBean("x");
+Y secondY = secondX.getY();
+SOP(firstX.equals(secondY));  // gives TRUE as it behaves as a singleton bean.
+
+}
+
+1) Using Method injection
+
+class X {
+
+@Lookup // it will return new instance each time.
+Y y;
+
+public Y getY() { return y; }
+public void setY(Y y) { this.y=y; }
+
+}
+SOP(firstX.equals(secondY));  // gives FALSE as it behaves as a singleton bean.
+
+2) Using ObjectFactory
+
+You can use ObjectFactory to get new object each time getY() method is called.
+
+class X {
+
+@Autowired
+private ObjectFactory<Y> protypeBeanObjectFactory;
+
+Y y;
+
+public Y getY() { return protypeBeanObjectFactory.getObject(); }
+
+public void setY(Y y) {
+        this.y = y;
+}
+}
+
+3) Using ApplicationContextAware
+
+You can return new bean using application context wheneven getY() method is getting called.
+
+public class X implements ApplicationContextAware {
+
+private ApplicationContextAware applicationContextAware;
+
+public Y getY() { return applicationContextAware.getBean(Y.class);  }
+
+}
