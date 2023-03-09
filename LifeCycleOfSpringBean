@@ -1,1 +1,8 @@
+The Spring bean factory is responsible for managing the life cycle callbacks of the beans which are created in the spring containers.
+Spring Bean factory -> A factory bean is a bean that serves as a factory for creating other beans within the IoC container.
+
+LINK: https://howtodoinjava.com/spring-core/spring-bean-life-cycle/
+
+Life cycle-
+Instantiation of a bean when the container starts
 
