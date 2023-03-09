@@ -1,3 +1,31 @@
 
 Ques. How to inject prototype bean reference in singleton bean? => LINK: https://java2blog.com/injecting-prototype-bean-singleton-bean-spring/#Using_Method_injection
+Ans. In file InjectPrototypeToSingetonBean
 Ques. How @Transactional works in Spring? 
+Ans. Without @Transactional we need to write-
+UserTransaction utx = entityManager.getTransaction(); 
+
+try { 
+    utx.begin(); 
+    businessLogic();
+    utx.commit(); 
+} catch(Exception ex) { 
+    utx.rollback(); 
+    throw ex; 
+}
+
+Problem of above code,
+i)it's repetitive and error prone
+ii)any error can have a very high impact
+iii)errors are hard to debug and reproduce
+iv)this decreases the readability of the code base
+
+With @Transactional,
+@Transactional
+public void businessLogic() {  ...}
+
+By using @Transactional, many important aspects such as transaction propagation are handled automatically. In this case if another transactional method is called by 
+businessLogic(), that method will have the option of joining the ongoing transaction.
+
+Transaction propogation levels-
+https://www.javainuse.com/spring/boot-transaction-propagation#:~:text=Transaction%20Propagation%20%2D%20MANDATORY&text=If%20current%20transaction%20exists%20then,existing%20transaction%20it%20gets%20suspended
