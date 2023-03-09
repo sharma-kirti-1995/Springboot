@@ -1,0 +1,9 @@
+@SpringBootApplication - combination of @EnableAutoConfiguration, @Configuration, @ComponentScan
+@Qualifier
+@Service
+@Repository
+@RestController
+@PathVariable
+@RequestParam
+@Transactional
+@Autowired
