@@ -29,4 +29,4 @@ Allows a client to tell the server that the same resource (with the same binding
 The server has fulfilled a GET request for the resource, and the response is a representation of the result of one or more instance-manipulations applied to the current instance.
 
 
-https://restfulapi.net/http-status-codes/#1xx
+LINK: https://restfulapi.net/http-status-codes/#1xx
