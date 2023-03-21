@@ -7,3 +7,5 @@
 @RequestParam
 @Transactional
 @Autowired
+
+@Primary - For default injection in case same Bean type is defined in the configuration class. LINK: https://javabydeveloper.com/spring-primary-annotation/
